@@ -42,7 +42,7 @@ describe("prettierls", () => {
           },
           end: {
             line: 1,
-            character: fileText.length,
+            character: 0,
           },
         },
       },
@@ -63,7 +63,7 @@ describe("prettierls", () => {
           },
           end: {
             line: 1,
-            character: fileText.length,
+            character: 0,
           },
         },
       },
@@ -82,7 +82,7 @@ describe("prettierls", () => {
           },
           end: {
             line: 1,
-            character: updatedFileText.length,
+            character: 0,
           },
         },
       },
@@ -144,7 +144,7 @@ function sendClose(rpc: MessageConnection, uri: string) {
 }
 
 function runClient() {
-  const process = spawn("bun", ["cli.ts", "--stdio"], {
+  const process = spawn("bun", ["./bin/prettierls", "--stdio"], {
     stdio: "pipe",
   });
 
@@ -152,6 +152,9 @@ function runClient() {
     new StreamMessageReader(process.stdout),
     new StreamMessageWriter(process.stdin),
   );
+  rpcClient.onUnhandledNotification((e) => {
+    console.log("unhandled notification", e);
+  });
   rpcClient.listen();
 
   return rpcClient;

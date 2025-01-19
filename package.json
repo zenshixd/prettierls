@@ -1,6 +1,7 @@
 {
-  "name": "prettierls",
+  "name": "@zenshixd/prettierls",
   "module": "index.ts",
+  "version": "0.0.2",
   "type": "module",
   "devDependencies": {
     "@types/bun": "latest"
@@ -8,11 +9,13 @@
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
+  "directories": {
+    "bin": "./bin"
+  },
   "dependencies": {
     "prettier": "^3.4.2",
     "vscode-jsonrpc": "^8.2.1",
     "vscode-languageserver": "^9.0.1",
-    "vscode-languageserver-protocol": "^3.17.5",
     "vscode-languageserver-textdocument": "^1.0.12"
   }
 }
